@@ -34,6 +34,7 @@ public class DebugController {
     public void clear() {
         locataireService.deleteAll();
         vehiculeService.deleteAll();
+        locationService.deleteAll();
     }
 
 
