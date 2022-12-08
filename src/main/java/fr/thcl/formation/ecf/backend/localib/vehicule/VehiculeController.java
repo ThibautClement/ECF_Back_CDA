@@ -58,9 +58,14 @@ public class VehiculeController {
         return vehiculeService.findByType(type);
     }
 
-    @GetMapping("/prix")
-    public List<Vehicule> findByPrix(@RequestParam double prix) {
-        return vehiculeService.findByPrix(prix);
+    @GetMapping("/prixsup")
+    public List<Vehicule> findByPrixSup(@RequestParam int prix) {
+        return vehiculeService.findByPrixSup(prix);
+    }
+
+    @GetMapping("/prixinf")
+    public List<Vehicule> findByPrixInf(@RequestParam int prix) {
+        return vehiculeService.findByPrixInf(prix);
     }
 
     @GetMapping("/dispo")

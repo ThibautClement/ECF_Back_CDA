@@ -24,7 +24,9 @@ public interface VehiculeService {
 
     List<Vehicule> findByType(VehiculeType type);
 
-    List<Vehicule> findByPrix(double prix);
+    List<Vehicule> findByPrixSup(int prix);
+
+    List<Vehicule> findByPrixInf(int prix);
 
     List<Vehicule> findByDispo();
 

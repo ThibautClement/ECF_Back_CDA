@@ -87,8 +87,8 @@ public class VehiculeServiceImpl implements VehiculeService {
         }
 
         if (vehiculesByEtat.isEmpty()) {
-            logger.warn("Il n'existe aucun vehicule dans cette etat : "+etat);
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Il n'existe vehicule dans cette etat : "+etat);
+            logger.warn("Il n'existe aucun vehicule dans cet etat : "+etat);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Il n'existe vehicule dans cet etat : "+etat);
         } else {
             return vehiculesByEtat;
         }
@@ -106,27 +106,46 @@ public class VehiculeServiceImpl implements VehiculeService {
         }
 
         if (vehiculesByType.isEmpty()) {
-            logger.warn("Il n'existe aucun vehicule dans cette etat : "+type);
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Il n'existe vehicule dans cette etat : "+type);
+            logger.warn("Il n'existe aucun vehicule de ce type : "+type);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Il n'existe aucun vehicule de ce type : "+type);
         } else {
             return vehiculesByType;
         }
     }
 
     @Override
-    public List<Vehicule> findByPrix(double prix) {
+    public List<Vehicule> findByPrixSup(int prix) {
         List<Vehicule> vehiculeList = this.findAll();
         List<Vehicule> vehiculesByPrix = new ArrayList<>();
 
         for (Vehicule vehicule: vehiculeList){
-            if (vehicule.getPrixJour() == prix) {
+            if (vehicule.getPrixJour() >= prix) {
                 vehiculesByPrix.add(vehicule);
             }
         }
 
         if (vehiculesByPrix.isEmpty()) {
-            logger.warn("Il n'existe aucun vehicule dans cette etat : "+prix);
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Il n'existe vehicule dans cette etat : "+prix);
+            logger.warn("Il n'existe aucun vehicule dont le prix est supérieur à : "+prix);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Il n'existe aucun vehicule dont le prix est supérieur à : "+prix);
+        } else {
+            return vehiculesByPrix;
+        }
+    }
+
+    @Override
+    public List<Vehicule> findByPrixInf(int prix) {
+        List<Vehicule> vehiculeList = this.findAll();
+        List<Vehicule> vehiculesByPrix = new ArrayList<>();
+
+        for (Vehicule vehicule: vehiculeList){
+            if (vehicule.getPrixJour() <= prix) {
+                vehiculesByPrix.add(vehicule);
+            }
+        }
+
+        if (vehiculesByPrix.isEmpty()) {
+            logger.warn("Il n'existe aucun vehicule dont le prix est inférieur à : "+prix);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Il n'existe aucun vehicule dont le prix est inférieur à : "+prix);
         } else {
             return vehiculesByPrix;
         }
