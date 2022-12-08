@@ -2,6 +2,7 @@ package fr.thcl.formation.ecf.backend.localib.locataire;
 
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface LocataireService {
@@ -15,5 +16,13 @@ public interface LocataireService {
     ResponseEntity<String> deleteById(String id);
 
     ResponseEntity<String> deleteAll();
+
+    Locataire modifierLocataire(String idLocataire, Locataire entity);
+
+//    List<Locataire> findByName(String name);
+//
+//    List<Locataire> findByDateDeNaissance(LocalDate dateDeNaissance);
+
+
 
 }

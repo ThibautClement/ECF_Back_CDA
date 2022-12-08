@@ -40,4 +40,9 @@ public class LocataireController {
     public ResponseEntity<String> deleteAll() {
         return locataireService.deleteAll();
     }
+
+    @PutMapping("{idLocataire}")
+    public Locataire modifierLocataire(@PathVariable String idLocataire, @RequestBody Locataire entity) {
+        return locataireService.modifierLocataire(idLocataire, entity);
+    }
 }
