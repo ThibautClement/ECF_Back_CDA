@@ -35,4 +35,9 @@ public class LocataireController {
     public ResponseEntity<String> deleteById(@PathVariable String id) {
         return locataireService.deleteById(id);
     }
+
+    @DeleteMapping("/all")
+    public ResponseEntity<String> deleteAll() {
+        return locataireService.deleteAll();
+    }
 }

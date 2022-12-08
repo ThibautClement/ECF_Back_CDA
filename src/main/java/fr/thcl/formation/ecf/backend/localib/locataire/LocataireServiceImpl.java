@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class LocataireServiceImpl implements LocataireService {
@@ -24,6 +25,10 @@ public class LocataireServiceImpl implements LocataireService {
 
     @Override
     public Locataire save(Locataire entity) {
+        if (entity.getDateCreation() == null) {
+            entity.setDateCreation(LocalDateTime.now());
+        }
+        entity.setDateModification(LocalDateTime.now());
         return this.locataireRepository.save(entity);
     }
 
@@ -39,5 +44,11 @@ public class LocataireServiceImpl implements LocataireService {
     public ResponseEntity<String> deleteById(String id) {
         locataireRepository.deleteById(id);
         return new ResponseEntity<>("Suppression du locataire à l'id : " + id, HttpStatus.ACCEPTED);
+    }
+
+    @Override
+    public ResponseEntity<String> deleteAll() {
+        locataireRepository.deleteAll();
+        return new ResponseEntity<>("Suppression de tous les locataires", HttpStatus.ACCEPTED);
     }
 }

@@ -13,4 +13,7 @@ public interface LocataireService {
     Locataire findById(String id);
 
     ResponseEntity<String> deleteById(String id);
+
+    ResponseEntity<String> deleteAll();
+
 }

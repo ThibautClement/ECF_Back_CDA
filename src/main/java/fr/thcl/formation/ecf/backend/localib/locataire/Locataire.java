@@ -1,6 +1,7 @@
 package fr.thcl.formation.ecf.backend.localib.locataire;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import fr.thcl.formation.ecf.backend.localib.utils.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +14,8 @@ import java.time.LocalDate;
 @Document
 @NoArgsConstructor
 @AllArgsConstructor
-public class Locataire {
+public class Locataire extends Entity {
 
-    @Id
-    private String id;
     private String nom;
     private String prenom;
     private String telephone;
