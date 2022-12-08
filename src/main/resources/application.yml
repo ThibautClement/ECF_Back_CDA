@@ -8,3 +8,6 @@ logging:
     org: WARN
     fr: TRACE
 
+server:
+  error:
+    include-message: always

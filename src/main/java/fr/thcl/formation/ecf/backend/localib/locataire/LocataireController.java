@@ -3,6 +3,7 @@ package fr.thcl.formation.ecf.backend.localib.locataire;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -44,5 +45,15 @@ public class LocataireController {
     @PutMapping("{idLocataire}")
     public Locataire modifierLocataire(@PathVariable String idLocataire, @RequestBody Locataire entity) {
         return locataireService.modifierLocataire(idLocataire, entity);
+    }
+
+    @GetMapping("/name")
+    public List<Locataire> findByName(@RequestParam String nom) {
+        return locataireService.findByName(nom);
+    }
+
+    @GetMapping("/birthdate")
+    public List<Locataire> findByDateDeNaissance(@RequestParam LocalDate dateDeNaissance) {
+        return locataireService.findByDateDeNaissance(dateDeNaissance);
     }
 }

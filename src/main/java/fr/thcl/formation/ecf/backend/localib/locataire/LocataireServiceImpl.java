@@ -67,39 +67,41 @@ public class LocataireServiceImpl implements LocataireService {
         return this.save(locataire);
     }
 
-//    @Override
-//    public List<Locataire> findByName(String name) {
-//        List<Locataire> locataireList = this.findAll();
-//        List<Locataire> locataireByName = new ArrayList<>();
-//
-//        for (Locataire locataire: locataireList) {
-//            if (locataire.getNom().equals(name)){
-//                locataireByName.add(locataire);
-//            }
-//        }
-//
-//        if (locataireByName.isEmpty()) {
-//            new ResponseEntity<>("Il n'y aucun locataire à ce nom.", HttpStatus.NOT_FOUND);
-//        }
-//
-//        return locataireByName;
-//    }
-//
-//    @Override
-//    public List<Locataire> findByDateDeNaissance(LocalDate dateDeNaissance) {
-//        List<Locataire> locataireList = this.findAll();
-//        List<Locataire> locataireByDateDeNaissance = new ArrayList<>();
-//
-//        for (Locataire locataire: locataireList) {
-//            if (locataire.getDateDeNaissance().equals(dateDeNaissance)){
-//                locataireByDateDeNaissance.add(locataire);
-//            }
-//        }
-//
-//        if (locataireByDateDeNaissance.isEmpty()) {
-//            new ResponseEntity<>("Il n'y aucun locataire pour cette date de naissance.", HttpStatus.NOT_FOUND);
-//        }
-//
-//        return locataireByDateDeNaissance;
-//    }
+    @Override
+    public List<Locataire> findByName(String nom) {
+        List<Locataire> locataireList = this.findAll();
+        List<Locataire> locataireByName = new ArrayList<>();
+
+        for (Locataire locataire: locataireList) {
+            if (locataire.getNom().equalsIgnoreCase(nom)){
+                locataireByName.add(locataire);
+            }
+        }
+
+        if (locataireByName.isEmpty()) {
+            logger.warn("Il n'existe aucun locataire à ce nom : " +nom);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Il n'existe aucun locataire à ce nom : " +nom);
+        } else {
+            return locataireByName;
+        }
+    }
+
+    @Override
+    public List<Locataire> findByDateDeNaissance(LocalDate dateDeNaissance) {
+        List<Locataire> locataireList = this.findAll();
+        List<Locataire> locataireByDateDeNaissance = new ArrayList<>();
+
+        for (Locataire locataire: locataireList) {
+            if (locataire.getDateDeNaissance().equals(dateDeNaissance)){
+                locataireByDateDeNaissance.add(locataire);
+            }
+        }
+
+        if (locataireByDateDeNaissance.isEmpty()) {
+            logger.warn("Il n'existe aucun locataire pour cette date de naissance : " +dateDeNaissance);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Il n'existe aucun locataire pour cette date de naissance : " +dateDeNaissance);
+        } else {
+            return locataireByDateDeNaissance;
+        }
+    }
 }

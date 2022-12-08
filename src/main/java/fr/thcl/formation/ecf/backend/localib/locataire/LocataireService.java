@@ -19,10 +19,8 @@ public interface LocataireService {
 
     Locataire modifierLocataire(String idLocataire, Locataire entity);
 
-//    List<Locataire> findByName(String name);
-//
-//    List<Locataire> findByDateDeNaissance(LocalDate dateDeNaissance);
+    List<Locataire> findByName(String nom);
 
-
+    List<Locataire> findByDateDeNaissance(LocalDate dateDeNaissance);
 
 }
