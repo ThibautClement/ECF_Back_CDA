@@ -58,11 +58,35 @@ public class LocataireServiceImpl implements LocataireService {
     public Locataire modifierLocataire(String idLocataire, Locataire entity) {
         Locataire locataire = this.findById(idLocataire);
 
-        locataire.setNom(entity.getNom());
-        locataire.setPrenom(entity.getPrenom());
-        locataire.setTelephone(entity.getTelephone());
-        locataire.setEmail(entity.getEmail());
-        locataire.setDateDeNaissance(entity.getDateDeNaissance());
+        if (entity.getNom() == null) {
+            locataire.setNom(locataire.getNom());
+        } else {
+            locataire.setNom(entity.getNom());
+        }
+
+        if (entity.getPrenom() == null) {
+            locataire.setPrenom(locataire.getPrenom());
+        } else {
+            locataire.setPrenom(entity.getPrenom());
+        }
+
+        if (entity.getTelephone() == null) {
+            locataire.setTelephone(locataire.getTelephone());
+        } else {
+            locataire.setTelephone(entity.getTelephone());
+        }
+
+        if (entity.getEmail() == null) {
+            locataire.setEmail(locataire.getEmail());
+        } else {
+            locataire.setEmail(entity.getEmail());
+        }
+
+        if (entity.getDateDeNaissance() == null) {
+            locataire.setDateDeNaissance(locataire.getDateDeNaissance());
+        } else {
+            locataire.setDateDeNaissance(entity.getDateDeNaissance());
+        }
 
         return this.save(locataire);
     }

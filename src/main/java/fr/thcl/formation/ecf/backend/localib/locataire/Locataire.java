@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.beans.Transient;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Data
 @Document
@@ -21,5 +23,9 @@ public class Locataire extends Entity {
     private String email;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateDeNaissance;
+
+//    public int getAge() {
+//        return Period.between(dateDeNaissance, LocalDate.now()).getYears();
+//    }
 
 }

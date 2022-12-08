@@ -42,7 +42,7 @@ public class LocataireController {
         return locataireService.deleteAll();
     }
 
-    @PutMapping("{idLocataire}")
+    @PatchMapping("{idLocataire}")
     public Locataire modifierLocataire(@PathVariable String idLocataire, @RequestBody Locataire entity) {
         return locataireService.modifierLocataire(idLocataire, entity);
     }
