@@ -23,8 +23,8 @@ public class Locataire extends Entity {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateDeNaissance;
 
-//    public int getAge() {
-//        return Period.between(dateDeNaissance, LocalDate.now()).getYears();
-//    }
+    public int getAge() {
+        return Period.between(dateDeNaissance, LocalDate.now()).getYears();
+    }
 
 }

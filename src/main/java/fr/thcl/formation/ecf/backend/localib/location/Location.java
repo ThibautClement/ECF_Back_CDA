@@ -33,4 +33,8 @@ public class Location extends Entity {
     public int getJoursLocation() {
         return Period.between(dateDebut, dateFin).getDays();
     }
+
+    public double getPrixLocation() {
+        return Period.between(dateDebut, dateFin).getDays()*vehicule.getPrixJour();
+    }
 }
