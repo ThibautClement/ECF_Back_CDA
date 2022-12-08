@@ -22,11 +22,20 @@ public class VehiculeServiceImpl implements VehiculeService {
         this.vehiculeRepository = vehiculeRepository;
     }
 
+    /**
+     * Récupère la liste de tous les véhicules
+     * @return une liste de véhicule(s)
+     */
     @Override
     public List<Vehicule> findAll() {
         return this.vehiculeRepository.findAll();
     }
 
+    /**
+     * Sauvegarde un véhicule existant ou non et met à jour sa date de création et de modification
+     * @param entity
+     * @return un vehicule
+     */
     @Override
     public Vehicule save(Vehicule entity) {
         if (entity.getDateCreation() == null) {
@@ -36,6 +45,11 @@ public class VehiculeServiceImpl implements VehiculeService {
         return this.vehiculeRepository.save(entity);
     }
 
+    /**
+     * Récupère un vehicule par son id
+     * @param id
+     * @return un vehicule
+     */
     @Override
     public Vehicule findById(String id) {
         return vehiculeRepository.findById(id).orElseThrow(() -> {
@@ -44,18 +58,33 @@ public class VehiculeServiceImpl implements VehiculeService {
         });
     }
 
+    /**
+     * Supprimer un vehicule à l'id donné
+     * @param id
+     * @return un message de suppression et un statut Http ACCEPTED
+     */
     @Override
     public ResponseEntity<String> deleteById(String id) {
         vehiculeRepository.deleteById(id);
         return new ResponseEntity<>("Suppression du vehicule à l'id : " + id, HttpStatus.ACCEPTED);
     }
 
+    /**
+     * Supprimer tous les vehicules
+     * @return un message de suppression et un statut Http ACCEPTED
+     */
     @Override
     public ResponseEntity<String> deleteAll() {
         vehiculeRepository.deleteAll();
         return new ResponseEntity<>("Suppression de tous les vehicules", HttpStatus.ACCEPTED);
     }
 
+    /**
+     * Permet de modifier les données d'un vehicules
+     * @param idVehicule
+     * @param entity le body qui comprend les élèments à modifier
+     * @return un vehicule modifié
+     */
     @Override
     public Vehicule modifierVehicule(String idVehicule, Vehicule entity) {
         Vehicule vehicule = this.findById(idVehicule);
@@ -111,6 +140,11 @@ public class VehiculeServiceImpl implements VehiculeService {
         return this.save(vehicule);
     }
 
+    /**
+     * Récupère une liste de vehicules par marque
+     * @param marque la marque recherché
+     * @return une liste de vehicule(s)
+     */
     @Override
     public List<Vehicule> findByMarque(String marque) {
         List<Vehicule> vehiculeList = this.findAll();
@@ -130,6 +164,11 @@ public class VehiculeServiceImpl implements VehiculeService {
         }
     }
 
+    /**
+     * Récupère une liste de véhicules par etat
+     * @param etat l'état recherché
+     * @return une liste de vehicule(s)
+     */
     @Override
     public List<Vehicule> findByEtat(VehiculeEtat etat) {
         List<Vehicule> vehiculeList = this.findAll();
@@ -149,6 +188,11 @@ public class VehiculeServiceImpl implements VehiculeService {
         }
     }
 
+    /**
+     * Récupère une liste de véhicules par type
+     * @param type le type recherché
+     * @return une liste de véhicule(s)
+     */
     @Override
     public List<Vehicule> findByType(VehiculeType type) {
         List<Vehicule> vehiculeList = this.findAll();
@@ -168,6 +212,11 @@ public class VehiculeServiceImpl implements VehiculeService {
         }
     }
 
+    /**
+     * Récupère une liste de véhicules par prix supérieur ou égal au prix donné
+     * @param prix le prix recherché
+     * @return une liste de véhicule(s)
+     */
     @Override
     public List<Vehicule> findByPrixSup(int prix) {
         List<Vehicule> vehiculeList = this.findAll();
@@ -187,6 +236,11 @@ public class VehiculeServiceImpl implements VehiculeService {
         }
     }
 
+    /**
+     * Récupère une liste de véhicules par prix inférieur ou égal au prix donné
+     * @param prix le prix recherché
+     * @return une liste de véhicule(s)
+     */
     @Override
     public List<Vehicule> findByPrixInf(int prix) {
         List<Vehicule> vehiculeList = this.findAll();
@@ -206,6 +260,10 @@ public class VehiculeServiceImpl implements VehiculeService {
         }
     }
 
+    /**
+     * Récupère une liste de véhicules par disponibilité
+     * @return une liste de véhicule(s)
+     */
     @Override
     public List<Vehicule> findByDispo() {
         List<Vehicule> vehiculeList = this.findAll();

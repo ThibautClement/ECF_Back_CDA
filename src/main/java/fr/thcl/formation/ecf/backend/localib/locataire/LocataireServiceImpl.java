@@ -20,11 +20,20 @@ public class LocataireServiceImpl implements LocataireService {
         this.locataireRepository = locataireRepository;
     }
 
+    /**
+     * Récupère la liste de tous les locataires
+     * @return une liste de locataire
+     */
     @Override
     public List<Locataire> findAll() {
         return this.locataireRepository.findAll();
     }
 
+    /**
+     * Sauvegarde un locataire existant ou non et met à jour sa date de création et de modification
+     * @param entity
+     * @return un locataire
+     */
     @Override
     public Locataire save(Locataire entity) {
         if (entity.getDateCreation() == null) {
@@ -34,6 +43,11 @@ public class LocataireServiceImpl implements LocataireService {
         return this.locataireRepository.save(entity);
     }
 
+    /**
+     * Récupère un locataire par son id
+     * @param id
+     * @return un locataire
+     */
     @Override
     public Locataire findById(String id) {
         return locataireRepository.findById(id).orElseThrow(() -> {
@@ -42,18 +56,33 @@ public class LocataireServiceImpl implements LocataireService {
         });
     }
 
+    /**
+     * Supprimer un locataire par son id
+     * @param id
+     * @return un message de suppression et un statut Http ACCEPTED
+     */
     @Override
     public ResponseEntity<String> deleteById(String id) {
         locataireRepository.deleteById(id);
         return new ResponseEntity<>("Suppression du locataire à l'id : " + id, HttpStatus.ACCEPTED);
     }
 
+    /**
+     * Supprime tous les locataires
+     * @return un message de suppression et un statut Http ACCEPTED
+     */
     @Override
     public ResponseEntity<String> deleteAll() {
         locataireRepository.deleteAll();
         return new ResponseEntity<>("Suppression de tous les locataires", HttpStatus.ACCEPTED);
     }
 
+    /**
+     * Permet de modifier les données d'un locataire
+     * @param idLocataire l'id du locataire à modifier
+     * @param entity le body qui comprend les élèments à modifier
+     * @return un locataire
+     */
     @Override
     public Locataire modifierLocataire(String idLocataire, Locataire entity) {
         Locataire locataire = this.findById(idLocataire);
@@ -91,6 +120,11 @@ public class LocataireServiceImpl implements LocataireService {
         return this.save(locataire);
     }
 
+    /**
+     * Récupère une liste de locataires par nom
+     * @param nom le nom de la recherche
+     * @return une liste de locataire(s)
+     */
     @Override
     public List<Locataire> findByName(String nom) {
         List<Locataire> locataireList = this.findAll();
@@ -110,6 +144,11 @@ public class LocataireServiceImpl implements LocataireService {
         }
     }
 
+    /**
+     * Récupère une liste de locataires par date de naissance
+     * @param dateDeNaissance la date de naissance recherché
+     * @return une liste de locataire(s)
+     */
     @Override
     public List<Locataire> findByDateDeNaissance(LocalDate dateDeNaissance) {
         List<Locataire> locataireList = this.findAll();

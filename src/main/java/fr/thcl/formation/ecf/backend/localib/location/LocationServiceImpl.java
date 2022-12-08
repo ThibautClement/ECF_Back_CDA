@@ -21,11 +21,20 @@ public class LocationServiceImpl implements LocationService{
         this.locatationRepository = locatationRepository;
     }
 
+    /**
+     * Récupère la liste de toutes les locations
+     * @return une liste de locations
+     */
     @Override
     public List<Location> findAll() {
         return this.locatationRepository.findAll();
     }
 
+    /**
+     * Sauvegarde une location existante ou non et met à jour sa date de création et de modification
+     * @param entity
+     * @return une location
+     */
     @Override
     public Location save(Location entity) {
         if (entity.getDateCreation() == null) {
@@ -35,6 +44,11 @@ public class LocationServiceImpl implements LocationService{
         return this.locatationRepository.save(entity);
     }
 
+    /**
+     * Récupère une location par son id
+     * @param id
+     * @return une location
+     */
     @Override
     public Location findById(String id) {
         return locatationRepository.findById(id).orElseThrow(() -> {
@@ -43,18 +57,32 @@ public class LocationServiceImpl implements LocationService{
         });
     }
 
+    /**
+     * Supprime une location
+     * @param id
+     * @return un message de suppression et un statut Http ACCEPTED
+     */
     @Override
     public ResponseEntity<String> deleteById(String id) {
         locatationRepository.deleteById(id);
         return new ResponseEntity<>("Suppression du locataire à l'id : " + id, HttpStatus.ACCEPTED);
     }
 
+    /**
+     * Supprime toutes les locations
+     * @return un message de suppression et un statut Http ACCEPTED
+     */
     @Override
     public ResponseEntity<String> deleteAll() {
         locatationRepository.deleteAll();
         return new ResponseEntity<>("Suppression de tous les locataires", HttpStatus.ACCEPTED);
     }
 
+    /**
+     * Récupère une liste de locations par locataires
+     * @param idLocataire
+     * @return une liste de location(s)
+     */
     @Override
     public List<Location> findByLocataire(String idLocataire) {
         List<Location> locationList = this.findAll();
@@ -74,6 +102,11 @@ public class LocationServiceImpl implements LocationService{
         }
     }
 
+    /**
+     * Récupère une liste de locations par nom de locataires
+     * @param nom
+     * @return une liste de location(s)
+     */
     @Override
     public List<Location> findByLocataireName(String nom) {
         List<Location> locationList = this.findAll();
@@ -93,6 +126,11 @@ public class LocationServiceImpl implements LocationService{
         }
     }
 
+    /**
+     * Récupère une liste de locations par véhicule
+     * @param idVehicule
+     * @return une liste de location(s)
+     */
     @Override
     public List<Location> findByVehicule(String idVehicule) {
         List<Location> locationList = this.findAll();
@@ -112,6 +150,11 @@ public class LocationServiceImpl implements LocationService{
         }
     }
 
+    /**
+     * Récupère une liste de locations par marque de véhicule
+     * @param marque
+     * @return une liste de location(s)
+     */
     @Override
     public List<Location> findByVehiculeMarque(String marque) {
         List<Location> locationList = this.findAll();
@@ -131,6 +174,11 @@ public class LocationServiceImpl implements LocationService{
         }
     }
 
+    /**
+     * Récupère une liste de locations par date de début de location
+     * @param dateDebut
+     * @return une liste de location(s)
+     */
     @Override
     public List<Location> findByDateDebut(LocalDate dateDebut) {
         List<Location> locationList = this.findAll();
@@ -150,6 +198,11 @@ public class LocationServiceImpl implements LocationService{
         }
     }
 
+    /**
+     * Récupère une liste de locations par date de fin
+     * @param dateFin
+     * @return une liste de location(s)
+     */
     @Override
     public List<Location> findByDateFin(LocalDate dateFin) {
         List<Location> locationList = this.findAll();
