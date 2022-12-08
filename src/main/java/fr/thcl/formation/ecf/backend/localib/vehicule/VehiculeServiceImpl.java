@@ -57,6 +57,61 @@ public class VehiculeServiceImpl implements VehiculeService {
     }
 
     @Override
+    public Vehicule modifierVehicule(String idVehicule, Vehicule entity) {
+        Vehicule vehicule = this.findById(idVehicule);
+
+        if (entity.getMarque() == null) {
+            vehicule.setMarque(vehicule.getMarque());
+        } else {
+            vehicule.setMarque(entity.getMarque());
+        }
+
+        if (entity.getModele() == null) {
+            vehicule.setModele(vehicule.getModele());
+        } else {
+            vehicule.setModele(entity.getModele());
+        }
+
+        if (entity.getImmatriculation() == null) {
+            vehicule.setImmatriculation(vehicule.getImmatriculation());
+        } else {
+            vehicule.setImmatriculation(entity.getImmatriculation());
+        }
+
+        if (entity.getImg() == null) {
+            vehicule.setImg(vehicule.getImg());
+        } else {
+            vehicule.setImg(entity.getImg());
+        }
+
+        if (entity.getEtat() == null) {
+            vehicule.setEtat(vehicule.getEtat());
+        } else {
+            vehicule.setEtat(entity.getEtat());
+        }
+
+        if (entity.getType() == null) {
+            vehicule.setType(vehicule.getType());
+        } else {
+            vehicule.setType(entity.getType());
+        }
+
+        if (entity.getPrixJour() == 0) {
+            vehicule.setPrixJour(vehicule.getPrixJour());
+        } else {
+            vehicule.setPrixJour(entity.getPrixJour());
+        }
+
+        if (entity.isDisponible() != vehicule.isDisponible()) {
+            vehicule.setDisponible(entity.isDisponible());
+        } else {
+            vehicule.setDisponible(vehicule.isDisponible());
+        }
+
+        return this.save(vehicule);
+    }
+
+    @Override
     public List<Vehicule> findByMarque(String marque) {
         List<Vehicule> vehiculeList = this.findAll();
         List<Vehicule> vehiculesByMarque = new ArrayList<>();

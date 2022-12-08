@@ -43,6 +43,11 @@ public class VehiculeController {
         return vehiculeService.deleteAll();
     }
 
+    @PatchMapping("{idVehicule}")
+    public Vehicule modifierVehicule(@PathVariable String idVehicule, @RequestBody Vehicule entity) {
+        return vehiculeService.modifierVehicule(idVehicule, entity);
+    }
+
     @GetMapping("/marque")
     public List<Vehicule> findByMarque(@RequestParam String marque) {
         return vehiculeService.findByMarque(marque);

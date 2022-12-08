@@ -23,7 +23,7 @@ public class Vehicule extends Entity {
     private VehiculeType type;
 
     private double prixJour;
-    private boolean disponible;
+    private boolean disponible = true;
 
 
 }

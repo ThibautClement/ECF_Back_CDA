@@ -18,6 +18,8 @@ public interface VehiculeService {
 
     ResponseEntity<String> deleteAll();
 
+    Vehicule modifierVehicule(String idVehicule, Vehicule entity);
+
     List<Vehicule> findByMarque(String marque);
 
     List<Vehicule> findByEtat(VehiculeEtat etat);
