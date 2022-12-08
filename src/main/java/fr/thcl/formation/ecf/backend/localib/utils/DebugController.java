@@ -2,6 +2,8 @@ package fr.thcl.formation.ecf.backend.localib.utils;
 
 import fr.thcl.formation.ecf.backend.localib.locataire.Locataire;
 import fr.thcl.formation.ecf.backend.localib.locataire.LocataireService;
+import fr.thcl.formation.ecf.backend.localib.location.Location;
+import fr.thcl.formation.ecf.backend.localib.location.LocationService;
 import fr.thcl.formation.ecf.backend.localib.vehicule.Enum.VehiculeEtat;
 import fr.thcl.formation.ecf.backend.localib.vehicule.Enum.VehiculeType;
 import fr.thcl.formation.ecf.backend.localib.vehicule.Vehicule;
@@ -20,9 +22,12 @@ public class DebugController {
     private final LocataireService locataireService;
     private final VehiculeService vehiculeService;
 
-    public DebugController(LocataireService locataireService, VehiculeService vehiculeService) {
+    private final LocationService locationService;
+
+    public DebugController(LocataireService locataireService, VehiculeService vehiculeService, LocationService locationService) {
         this.locataireService = locataireService;
         this.vehiculeService = vehiculeService;
+        this.locationService = locationService;
     }
 
     @DeleteMapping("clear")
@@ -85,6 +90,24 @@ public class DebugController {
                 VehiculeType.VOITURE,
                 45.5,
                 true
+        ));
+        Location location1 = this.locationService.save(new Location(
+                locataire1,
+                vehicule1,
+                LocalDate.now(),
+                LocalDate.of(2022, 12, 16)
+        ));
+        Location location2 = this.locationService.save(new Location(
+                locataire2,
+                vehicule2,
+                LocalDate.now(),
+                LocalDate.of(2022, 12, 14)
+        ));
+        Location location3 = this.locationService.save(new Location(
+                locataire3,
+                vehicule3,
+                LocalDate.now(),
+                LocalDate.of(2022, 12, 18)
         ));
     }
 }
